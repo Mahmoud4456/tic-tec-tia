@@ -181,7 +181,7 @@ class _GameViewState extends State<GameView> {
             ),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               CustomButtom(
-                onTap: () => resetGame,
+                onTap: () => resetGame(),
                 text: "Reset",
               ),
               const SizedBox(
