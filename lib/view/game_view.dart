@@ -1,8 +1,10 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:xo/view/widget/custom_buttom.dart';
 
 class GameView extends StatefulWidget {
   const GameView({super.key, required this.player1, required this.player2});
+
   final String player1;
   final String player2;
 
@@ -71,7 +73,7 @@ class _GameViewState extends State<GameView> {
         AwesomeDialog(
             context: context,
             dialogType: DialogType.success,
-           // btnOkText: "rest",
+            // btnOkText: "rest",
             btnOkText: " Play Again ",
             title: winner == "X"
                 ? "${widget.player1} !Win"
@@ -138,15 +140,13 @@ class _GameViewState extends State<GameView> {
               ),
               margin: const EdgeInsets.all(5),
               child: GridView.builder(
-                padding:const EdgeInsets.only( top: 15, right: 10 ,left: 10 , bottom: 10),
+                padding: const EdgeInsets.only(
+                    top: 15, right: 10, left: 10, bottom: 10),
                 itemCount: 9,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisSpacing: 5,
-                    mainAxisSpacing: 5,
-                    crossAxisCount: 3
-                ),
+                    crossAxisSpacing: 5, mainAxisSpacing: 5, crossAxisCount: 3),
                 itemBuilder: (context, index) {
                   int row = index ~/ 3;
                   int col = index % 3;
@@ -176,50 +176,24 @@ class _GameViewState extends State<GameView> {
                 },
               ),
             ),
-          const SizedBox(height: 15,),
-           Row(
-             mainAxisAlignment: MainAxisAlignment.center,
-               children :
-               [
-                 InkWell(
-                   onTap: resetGame,
-                   child: Container(
-                     padding:const EdgeInsets.all(15),
-                     decoration: BoxDecoration(
-                       color: Colors.green,
-                       borderRadius: BorderRadius.circular(14),
-                     ),
-                     child: const Text("Reset" , style: TextStyle(
-                       color: Colors.white,
-                       fontSize: 22,
-                     fontWeight: FontWeight.bold
-                     ),
-                     ),
-                   ),
-                 ),
-                const SizedBox(
-                   width: 5,
-                 ),
-                 InkWell(
-                   onTap:() {
-                     Navigator.pop(context);
-                   },
-                   child: Container(
-                     padding: const EdgeInsets.all(15),
-                     decoration: BoxDecoration(
-                       color: Colors.green,
-                       borderRadius: BorderRadius.circular(14),
-                     ),
-                     child: const Text("Main" , style: TextStyle(
-                         color: Colors.white,
-                         fontSize: 22,
-                         fontWeight: FontWeight.bold
-                     ),
-                     ),
-                   ),
-                 ),
-               ]
-           ),
+            const SizedBox(
+              height: 15,
+            ),
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              CustomButtom(
+                onTap: () => resetGame,
+                text: "Reset",
+              ),
+              const SizedBox(
+                width: 30,
+              ),
+              CustomButtom(
+                text: 'Main',
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ]),
           ],
         ),
       ),
